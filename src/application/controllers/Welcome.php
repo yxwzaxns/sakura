@@ -1,0 +1,53 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Welcome extends CI_Controller {
+
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see http://codeigniter.com/user_guide/general/urls.html
+	 */
+	public function index()
+	{
+		$data['navs'] = $this->nav->get_navs();
+
+		$data['kcjj'] = $this->article->get_article(23);
+		$data['kcjc'] = $this->article->get_article(20);
+
+		$this->load->view('index',$data);
+	}
+	public function nav_list($nav_id='')
+	{
+		$first_subnav_id = $this->nav->get_subnavs($nav_id)[0]['id'];
+		$first_article_id = $this->article->get_article($this->article->getIdFromNid($first_subnav_id))['id'];
+
+		header('location:http://'.$_SERVER['HTTP_HOST'].'/welcome/page/'.$first_article_id);
+
+	}
+	public function page($article_id='')
+	{
+		$data['navs'] = $this->nav->get_navs();
+		$data['article'] = $this->article->get_article($article_id)['content'];
+		$data['subnavs'] = $this->nav->get_subnavs($this->nav->getPidFromId($this->article->getNidFromId($article_id)));
+
+
+		$this->load->view('layout_top',$data);
+		$this->load->view('layout_body');
+
+	}
+	public function test($value='')
+	{
+		$this->load->view('layout_top');
+	}
+}
