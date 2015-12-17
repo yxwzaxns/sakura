@@ -88,7 +88,7 @@
                     </div>
         </div>
     </div>
-    <div><a href="http://weibo.com/u/2745017835" target="_blank"><img src="./images/weibo.png" width="280" alt="关注通信原理课程的微博"/></a></div>
+    <!-- <div><a href="http://weibo.com/u/2745017835" target="_blank"><img src="./images/weibo.png" width="280" alt="关注通信原理课程的微博"/></a></div> -->
 </div>
 
 
@@ -108,22 +108,38 @@
         </div>
     </div>
     <div class="rightmod">
-        <h2>课程教材<span class="more"><a href="page.php?p=ckjc">更多&raquo;</a></span></h2>
+        <h2>课程教材<span class="more"><a href="/welcome/page/<?php echo $kcjc['id']; ?>">更多&raquo;</a></span></h2>
         <div class="dashline"></div>
         <div class="modcontent">
-          <?php echo $kcjc['content']; ?>
+          <img src="http://ste.xidian.edu.cn/txyl/files/upload_images/86761377781934.jpg" width="120" height="120" alt="现代通信原理与技术第三版" title="现代通信原理与技术第三版" style="margin:5px 0;border:0;" />
+          <img src="http://ste.xidian.edu.cn/txyl/files/upload_images/67381352457643.jpg" width="120" height="120" alt="通信原理学习辅导" title="通信原理学习辅导" style="margin:5px 0;border:0;" />
+          <img src="http://ste.xidian.edu.cn/txyl/files/upload_images/85631352457646.jpg" width="120" height="120" alt="通信原理辅导" title="通信原理辅导" style="margin:5px 0;border:0;" />
+          <img src="http://ste.xidian.edu.cn/txyl/files/upload_images/59561353213122.jpg" width="120" height="120" alt="简明通信原理" title="简明通信原理" style="margin:5px 0;border:0;" />
+          <img src="http://ste.xidian.edu.cn/txyl/files/upload_images/23341353036432.jpg" width="120" height="120" alt="通信原理" title="通信原理" style="margin:5px 0;border:0;" />
+          <img src="http://ste.xidian.edu.cn/txyl/files/upload_images/63991377783162.jpg" width="120" height="120" alt="通信原理第7版" title="通信原理第7版" style="margin:5px 0;border:0;" />
+          <img src="http://ste.xidian.edu.cn/txyl/files/upload_images/31891377782887.jpg" width="120" height="120" alt="通信原理（第7版）学习辅导与考研指导" title="通信原理（第7版）学习辅导与考研指导" style="margin:5px 0;border:0;" />
+          <img src="http://ste.xidian.edu.cn/txyl/files/upload_images/93001352457640.jpg" width="120" height="120" alt="通信原理第6版（精编本）" title="通信原理第6版（精编本）" style="margin:5px 0;border:0;" />
+          <img src="http://ste.xidian.edu.cn/txyl/files/upload_images/37321352457650.jpg" width="120" height="120" alt="通信原理（英文版）" title="通信原理（英文版）" style="margin:5px 0;border:0;" />
+
         </div>
     </div>
     <div class="rightmod">
         <h2>快速链接</h2>
         <div class="dashline"></div>
         <div class="modcontent">
-                    <a href="http://www.xidian.edu.cn/">西安电子科技大学</a>&nbsp;&nbsp;
-                    <a href="http://jyk.xidian.edu.cn/jingpin.asp">西安电子科技大学精品课程建设网</a>&nbsp;&nbsp;
-                    <a href="http://txyl.sice.bupt.cn/">北京邮电大学通信原理网站</a>&nbsp;&nbsp;
-                    <a href="http://166.111.180.5/Spectacle2004/Default2003.aspx">国家精品课程网</a>&nbsp;&nbsp;
-        <br />            <a href="http://166.111.92.10/jpkcgc/jpkc/jpkc_1.jsp">清华大学国家精品课程</a>&nbsp;&nbsp;
-                </div>
+          <?PHP
+            $i=0;
+            if(!empty($flinks))
+              foreach ($flinks as $key => $value) {
+                if($i == 4){
+                  echo '<br />';
+                  $i=0;
+                }
+                echo '<a href="'.$value['url'].'">'.$value['name'].'</a>&nbsp;&nbsp;';
+                $i+=1;
+              }
+          ?>
+        </div>
     </div>
 </div>
 
@@ -134,7 +150,7 @@
         <div class="copyright">
             <h3>桂林电子科技大学-信息与通信学院 </h3>
             <h3>GUET</h3>
-            <span>&copy; 2014</span>
+            <span>&copy; 2014</span><a href="/admin/">login</a>
         </div>
     </div>
 </div>

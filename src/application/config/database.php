@@ -70,6 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
+
 $host = getenv('MYSQL_PORT_3306_TCP_ADDR')?getenv('MYSQL_PORT_3306_TCP_ADDR'):'localhost';
 $user = getenv('MYSQL_USERNAME')?getenv('MYSQL_USERNAME'):'root';
 $password = getenv('MYSQL_PASSWORD')?getenv('MYSQL_PASSWORD'):1234;

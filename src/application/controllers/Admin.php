@@ -132,6 +132,32 @@ class Admin extends CI_Controller {
 		$this->load->view('head');
 		$this->load->view('admin/subnav_list',$data);
 	}
+	public function flink_list($value='')
+	{
+		$data['flinks']=$this->db->query('select * from flink')->result_array();
+		// var_dump($data);exit;
+		$this->load->view('head');
+		$this->load->view('admin/flink_list',$data);
+	}
+	public function flink_create($value='')
+	{
+		if($_POST){
+			$data['name']=$this->input->post('name');
+			$data['url']=$this->input->post('url');
+
+			if($this->db->insert('flink',$data))
+				show_message("友链添加成功",'/admin/flink_list',302);
+			else
+				show_error("出问题了..");
+		}
+	}
+	public function flink_delete($id='')
+	{
+		if($this->db->delete('flink',array("id" => $id)))
+			show_message("友链删除成功",'/admin/flink_list',302);
+		else
+			show_error("出问题了..");
+	}
 	public function reset_password($value='')
 	{
 		if($_POST){

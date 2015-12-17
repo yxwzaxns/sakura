@@ -21,26 +21,36 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$data['navs'] = $this->nav->get_navs();
-
+		$data['flinks'] = $this->db->query('select * from flink')->result_array();
 		$data['kcjj'] = $this->article->get_article(23);
-		$data['kcjc'] = $this->article->get_article(20);
+		$data['kcjc'] = $this->article->get_article(34);
 
 		$this->load->view('index',$data);
 	}
 	public function nav_list($nav_id='')
 	{
-		$first_subnav_id = $this->nav->get_subnavs($nav_id)[0]['id'];
-		$first_article_id = $this->article->get_article($this->article->getIdFromNid($first_subnav_id))['id'];
 
-		header('location:http://'.$_SERVER['HTTP_HOST'].'/welcome/page/'.$first_article_id);
-
+		// 判断是否有子栏目
+		if($this->nav->has_node($nav_id) == 0){
+			$article_id = $this->article->getIdFromNid($nav_id);
+			header('location:http://'.$_SERVER['HTTP_HOST'].'/welcome/page/'.$article_id.'/0');
+		}else{
+			$first_subnav_id = $this->nav->get_subnavs($nav_id)[0]['id'];
+			$first_article_id = $this->article->get_article($this->article->getIdFromNid($first_subnav_id))['id'];
+			header('location:http://'.$_SERVER['HTTP_HOST'].'/welcome/page/'.$first_article_id);
+		}
 	}
-	public function page($article_id='')
+	public function page($article_id='',$isNode=1)
 	{
+
 		$data['navs'] = $this->nav->get_navs();
 		$data['article'] = $this->article->get_article($article_id)['content'];
-		$data['subnavs'] = $this->nav->get_subnavs($this->nav->getPidFromId($this->article->getNidFromId($article_id)));
 
+		if( $isNode == 0){
+			$data['subnavs'] = $this->nav->get_nav($this->article->getNidFromId($article_id));
+		}else{
+			$data['subnavs'] = $this->nav->get_subnavs($this->nav->getPidFromId($this->article->getNidFromId($article_id)));
+		}
 
 		$this->load->view('layout_top',$data);
 		$this->load->view('layout_body');

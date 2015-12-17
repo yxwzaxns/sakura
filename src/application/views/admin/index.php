@@ -50,6 +50,7 @@
         		</li> -->
         		<li><div class="link"><i class="fa fa-globe"></i>系统设置<i class="fa fa-chevron-down"></i></div>
         			<ul class="submenu">
+                <li><a href="/admin/flink_list" target="iframe">友情链接管理</a></li>
         				<li><a href="/admin/reset_password" target="iframe">更改管理密码</a></li>
         			</ul>
         		</li>

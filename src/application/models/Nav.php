@@ -26,6 +26,11 @@ class Nav extends CI_Model {
         }
         return $navs;
     }
+    public function get_nav($nav_id)
+    {
+        $nav = $this->db->query('select * from nav where id='.$nav_id)->result_array();
+        return $nav;
+    }
     public function get_subnavs($nav_id='')
     {
         return $this->db->query('select * from nav where pid='.$nav_id)->result_array();
@@ -37,6 +42,13 @@ class Nav extends CI_Model {
     public function getPidFromId($nav_id='')
     {
       return $this->db->query('select pid from nav where id='.$nav_id)->result_array()[0]['pid'];
+    }
+    public function has_node($nav_id='')
+    {
+      if($this->db->query('select count(*) from nav where pid='.$nav_id)->result_array()[0]['count(*)'] == 0)
+        return 0;
+      else
+        return 1;
     }
     public function insert_subnav($value='')
     {

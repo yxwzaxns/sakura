@@ -15,7 +15,7 @@
              '<div class="btn-group method" role="group" aria-label="...">'.
              '<a href="/admin/article_update/'.$nav_id.'/'.$value['article_id'].'" type="button" class="btn btn-default">修改</a>'.
              '<a href="/admin/nav_delete/'.$nav_id.'/'.$value['id'].'" type="button" class="btn btn-default">删除</a>'.
-             '<a type="button" class="btn btn-default">发布</a>'.
+            //  '<a type="button" class="btn btn-default">发布</a>'.
              '</div>'.
              '<div class="clearfix"></div>'.
              '</li>';
