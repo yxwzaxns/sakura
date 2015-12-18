@@ -41,6 +41,7 @@ WORKDIR /app
 RUN chmod 755 ./start.sh
 
 RUN chmod -R 777 /app/public/plug/uedit/php
+RUN chmod -R 777 /app/public/upload
 
 EXPOSE 80
 CMD ["./start.sh"]

@@ -40,14 +40,14 @@
                 </li>
         			</ul>
         		</li>
-        		<!-- <li>
-        			<div class="link"><i class="fa fa-code"></i>a<i class="fa fa-chevron-down"></i></div>
+        		<li>
+        			<div class="link"><i class="fa fa-code"></i>首页内容管理<i class="fa fa-chevron-down"></i></div>
         			<ul class="submenu">
-        				<li><a href="#">Javascript</a></li>
-        				<li><a href="#">jQuery</a></li>
-        				<li><a href="#">Frameworks javascript</a></li>
+        				<li><a href="/admin/info" target="iframe">教材图片管理</a></li>
+        				<li><a href="/admin/teach_video_list" target="iframe">教学视频管理</a></li>
+        				<!-- <li><a href="#">Frameworks javascript</a></li> -->
         			</ul>
-        		</li> -->
+        		</li>
         		<li><div class="link"><i class="fa fa-globe"></i>系统设置<i class="fa fa-chevron-down"></i></div>
         			<ul class="submenu">
                 <li><a href="/admin/flink_list" target="iframe">友情链接管理</a></li>
@@ -64,7 +64,7 @@
           <h3 class="panel-title">内容管理</h3>
         </div>
         <div class="panel-body">
-          <iframe id="frame_content" src="/admin/info" frameborder="0" width="100%" onload="this.height=500" scrolling="no" name="iframe" >
+          <iframe id="frame_content" src="/admin/subnav_list/42" frameborder="0" width="100%" onload="this.height=600" scrolling="no" name="iframe" >
           </iframe>
         </div>
       </div>

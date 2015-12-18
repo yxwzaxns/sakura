@@ -10,10 +10,10 @@
   <ul class="list-group">
     <!--  -->
     <?php
-      foreach ($subnav as $key => $value) {
+      foreach ($teach_photos as $key => $value) {
         echo '<li class="list-group-item">'.$value['navname'].
              '<div class="btn-group method" role="group" aria-label="...">'.
-             '<a href="/admin/subnav_update/'.$nav_id.'/'.$value['article_id'].'" type="button" class="btn btn-default">修改</a>'.
+             '<a href="/admin/article_update/'.$nav_id.'/'.$value['article_id'].'" type="button" class="btn btn-default">修改</a>'.
              '<a href="/admin/nav_delete/'.$nav_id.'/'.$value['id'].'" type="button" class="btn btn-default">删除</a>'.
             //  '<a type="button" class="btn btn-default">发布</a>'.
              '</div>'.

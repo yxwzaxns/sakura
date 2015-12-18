@@ -57,35 +57,25 @@
     </div> -->
     <div class="leftmod">
         <!-- 视频 -->
-        <h2>课程视频<span class="more"><a href="page.php?p=jxsp">更多&raquo;</a></span></h2>
+        <h2>课程视频<span class="more"><a href="/welcome/page/37">更多&raquo;</a></span></h2>
         <div class="dashline"></div>
         <div class="modcontent">
             <div class="videoList">
-                        <a href="http://v.youku.com/v_show/id_XNDczMDE0Mzk2.html" target="_blank" title="点击播放 教学视频--李建东">
-                    <img class="videoThumb" src="http://ste.xidian.edu.cn/txyl/files/upload_images/74191352456462.jpg" alt="教学视频--李建东" width="128" height="96" />
-                    <div class="videoIntro">
-                        <h3>教学视频--李建东</h3>
-                        <span>西安电子科技大学《通信原理》课程视频，主讲：李建东教授。内容：二进制数字调制与解调原理</span>
-                    </div>
-                    <div class="videoPlayBtn"><img src="./images/icon_video_play.png" alt="播放" width="20" /></div>
-                </a>
-                        <a href="http://v.youku.com/v_show/id_XNDczMDE4Nzky.html" target="_blank" title="点击播放 教学视频--张辉">
-                    <img class="videoThumb" src="http://ste.xidian.edu.cn/txyl/files/upload_images/23491352456462.jpg" alt="教学视频--张辉" width="128" height="96" />
-                    <div class="videoIntro">
-                        <h3>教学视频--张辉</h3>
-                        <span>西安电子科技大学《通信原理》课程视频，主讲：张辉教授。内容：数字通信系统中的匹配滤波器</span>
-                    </div>
-                    <div class="videoPlayBtn"><img src="./images/icon_video_play.png" alt="播放" width="20" /></div>
-                </a>
-                        <a href="http://v.youku.com/v_show/id_XNDczMDEwMzU2.html" target="_blank" title="点击播放 教学视频--曹丽娜">
-                    <img class="videoThumb" src="http://ste.xidian.edu.cn/txyl/files/upload_images/71911352456461.jpg" alt="教学视频--曹丽娜" width="128" height="96" />
-                    <div class="videoIntro">
-                        <h3>教学视频--曹丽娜</h3>
-                        <span>西安电子科技大学《通信原理》课程录像，主讲：曹丽娜教授。内容：数字基带传输中的抗误码性能。</span>
-                    </div>
-                    <div class="videoPlayBtn"><img src="./images/icon_video_play.png" alt="播放" width="20" /></div>
-                </a>
-                    </div>
+              <?php
+                if(!empty($kcsp))
+                  foreach ($kcsp as $key => $value) {
+                    echo '<a href="'.$value['video_url'].'" target="_blank" title="点击播放 '.$value['title'].'>">'.
+                         '<img class="videoThumb" src="'.$value['thumb'].'" alt="教学视频--李建东" width="128" height="96" />'.
+                         '<div class="videoIntro">'.
+                         '<h3>教学视频--'.$value['author'].'</h3>'.
+                         '<span>西安电子科技大学《通信原理》课程视频，主讲：李建东教授。内容：二进制数字调制与解调原理</span>'.
+                         '</div>'.
+                         '<div class="videoPlayBtn"><img src="/public/images/icon_video_play.png" alt="播放" width="20" /></div>'.
+                         '</a>';
+                  }
+               ?>
+
+            </div>
         </div>
     </div>
     <!-- <div><a href="http://weibo.com/u/2745017835" target="_blank"><img src="./images/weibo.png" width="280" alt="关注通信原理课程的微博"/></a></div> -->

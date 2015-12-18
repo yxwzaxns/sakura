@@ -24,7 +24,11 @@ class Welcome extends CI_Controller {
 		$data['flinks'] = $this->db->query('select * from flink')->result_array();
 		$data['kcjj'] = $this->article->get_article(23);
 		$data['kcjc'] = $this->article->get_article(34);
-
+		// 教材图片
+		$data['kctp'] = $this->db->query('select * from ext_teach_photo')->result_array();
+		// 教材视频
+		$data['kcsp'] = $this->db->query('select * from article where type=2')->result_array();
+		// var_dump($data['kcsp']);exit;
 		$this->load->view('index',$data);
 	}
 	public function nav_list($nav_id='')

@@ -22,7 +22,7 @@ class Admin extends CI_Controller {
 	 {
 	     parent::__construct();
 	     if(!$this->session->has_userdata('user')){
-	     	header('location:http://'.$_SERVER['HTTP_HOST'].'/index.php');
+	     	header('location:http://'.$_SERVER['HTTP_HOST'].'/func/login');
 	     }
 	 }
 
@@ -77,6 +77,21 @@ class Admin extends CI_Controller {
 			else
 				show_error("出问题了");
 	}
+	public function subnav_update($nav_id='',$article_id='')
+	{
+		if($_POST){
+			if($this->article->update($article_id))
+				show_message("子栏目内容更新成功",'/admin/subnav_list/'.$nav_id,302);
+			else
+				show_error("出问题了..");
+		}else{
+			$data['article'] = $this->article->get_article($article_id);
+			$data['nav_id'] = $nav_id;
+			$data['article_id'] = $article_id;
+			$this->load->view('head');
+			$this->load->view('admin/article_update',$data);
+		}
+	}
 	public function nav_delete($nav_id='',$subnav_id='')
 	{
 		if(!empty($nav_id) && !empty($subnav_id)){
@@ -101,15 +116,19 @@ class Admin extends CI_Controller {
 	{
 		$this->article->insert($nid);
 	}
-	public function article_delete($value='')
+	public function article_delete($article_id='')
 	{
-		# code...
+		// var_dump($_SERVER);exit;
+		if( $this->article->delete($article_id))
+			show_message("删除成功",$_SERVER['HTTP_REFERER'],302);
+		else
+			show_error("出问题了");
 	}
 	public function article_update($nav_id='',$article_id='')
 	{
 		if($_POST){
 			if($this->article->update($article_id))
-				show_message("子栏目内容更新成功",'/admin/subnav_list/'.$nav_id,302);
+				show_message("子栏目内容更新成功",$_SERVER['HTTP_REFERER'],302);
 			else
 				show_error("出问题了..");
 		}else{
@@ -118,6 +137,20 @@ class Admin extends CI_Controller {
 			$data['article_id'] = $article_id;
 			$this->load->view('head');
 			$this->load->view('admin/article_update',$data);
+		}
+	}
+	public function video_article_update($article_id='')
+	{
+		if($_POST){
+			if($this->article->update($article_id))
+				show_message("子栏目内容更新成功",'/admin/teach_video_list/',302);
+			else
+				show_error("出问题了..");
+		}else{
+			$data['article'] = $this->article->get_article($article_id);
+			$data['article_id'] = $article_id;
+			$this->load->view('head');
+			$this->load->view('admin/video_article_update',$data);
 		}
 	}
 	public function subnav_list($nav_id='')
@@ -132,6 +165,23 @@ class Admin extends CI_Controller {
 		$this->load->view('head');
 		$this->load->view('admin/subnav_list',$data);
 	}
+	// **
+	public function teach_video_list($value='')
+	{
+		if($_POST){
+			if($this->article->insert()){
+				show_message("教学视频添加成功",'/admin/teach_video_list/',302);
+			}else {
+				show_error("出问题了..");
+			}
+		}else {
+			// $data['']
+			$data['teach_videos'] = $this->article->get_articles_where(array("type" => 2));
+			$this->load->view('head');
+			$this->load->view('admin/teach_video_list',$data);
+		}
+	}
+	// **
 	public function flink_list($value='')
 	{
 		$data['flinks']=$this->db->query('select * from flink')->result_array();
@@ -170,8 +220,27 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/reset_password');
 		}
 	}
+	public function upload()
+	{
+		$config['upload_path']      = 'public/upload/images/';
+		$config['allowed_types']    = 'gif|jpg|png';
+		$config['max_size']     = 100;
+		$config['max_width']        = 1024;
+		$config['max_height']       = 768;
+
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->do_upload('thumb'))
+		{
+				return $this->upload->display_errors();
+		}
+		else
+		{
+				return $this->upload->data('full_path');
+		}
+	}
 	public function test($value='')
 	{
-		var_dump($this->article->getIdFromNid($this->nav->getIdFromNavname($_POST['navname'])));
+		$this->upload();
 	}
 }
