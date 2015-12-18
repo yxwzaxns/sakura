@@ -22,7 +22,7 @@ class Admin extends CI_Controller {
 	 {
 	     parent::__construct();
 	     if(!$this->session->has_userdata('user')){
-	     	header('location:http://'.$_SERVER['HTTP_HOST'].'/func/login');
+	     	header('location:http://'.$_SERVER['HTTP_HOST'].'/func/admin_login');
 	     }
 	 }
 
