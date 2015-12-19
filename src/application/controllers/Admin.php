@@ -220,27 +220,49 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/reset_password');
 		}
 	}
-	public function upload()
+	public function teach_photo_list($value='')
 	{
-		$config['upload_path']      = 'public/upload/images/';
-		$config['allowed_types']    = 'gif|jpg|png';
-		$config['max_size']     = 100;
-		$config['max_width']        = 1024;
-		$config['max_height']       = 768;
+		if($_FILES){
+			$config['upload_path']      = 'public/upload/images/';
+  		$config['allowed_types']    = 'gif|jpg|png';
+  		$config['max_size']     = '0';
+  		$config['max_width']        = 3000;
+  		$config['max_height']       = 3000;
+      $config['encrypt_name']     = true;
 
-		$this->load->library('upload', $config);
+  		$this->load->library('upload', $config);
 
-		if ( ! $this->upload->do_upload('thumb'))
-		{
-				return $this->upload->display_errors();
+  		if ( ! $this->upload->do_upload('fileList'))
+  		{
+  				$photo = $this->upload->display_errors();
+					echo $photo;
+  		}
+  		else
+  		{
+  				$photo = '/public/upload/images/'.$this->upload->data('file_name');
+					$this->db->insert('ext_teach_photo',array( "path" => $photo ));
+					echo $this->upload->data('file_name');
+  		}
+		}else{
+			$data['teach_photos'] = $this->db->query('select * from ext_teach_photo')->result_array();
+			$this->load->view('head');
+			$this->load->view('admin/teach_photo_list',$data);
 		}
+	}
+	public function photo_delete($id='')
+	{
+		$this->db->where('id', $id);
+		if( $this->db->delete('ext_teach_photo'))
+			show_message("删除成功",'/admin/teach_photo_list',302);
 		else
-		{
-				return $this->upload->data('full_path');
-		}
+			show_error("出问题了..");
 	}
 	public function test($value='')
 	{
-		$this->upload();
+		if ($_POST) {
+			var_dump($_POST);
+		}else{
+			var_dump($_POST);
+		}
 	}
 }

@@ -43,7 +43,7 @@
         		<li>
         			<div class="link"><i class="fa fa-code"></i>首页内容管理<i class="fa fa-chevron-down"></i></div>
         			<ul class="submenu">
-        				<li><a href="/admin/info" target="iframe">教材图片管理</a></li>
+        				<li><a href="/admin/teach_photo_list" target="iframe">教材图片管理</a></li>
         				<li><a href="/admin/teach_video_list" target="iframe">教学视频管理</a></li>
         				<!-- <li><a href="#">Frameworks javascript</a></li> -->
         			</ul>

@@ -101,16 +101,12 @@
         <h2>课程教材<span class="more"><a href="/welcome/page/<?php echo $kcjc['id']; ?>">更多&raquo;</a></span></h2>
         <div class="dashline"></div>
         <div class="modcontent">
-          <img src="http://ste.xidian.edu.cn/txyl/files/upload_images/86761377781934.jpg" width="120" height="120" alt="现代通信原理与技术第三版" title="现代通信原理与技术第三版" style="margin:5px 0;border:0;" />
-          <img src="http://ste.xidian.edu.cn/txyl/files/upload_images/67381352457643.jpg" width="120" height="120" alt="通信原理学习辅导" title="通信原理学习辅导" style="margin:5px 0;border:0;" />
-          <img src="http://ste.xidian.edu.cn/txyl/files/upload_images/85631352457646.jpg" width="120" height="120" alt="通信原理辅导" title="通信原理辅导" style="margin:5px 0;border:0;" />
-          <img src="http://ste.xidian.edu.cn/txyl/files/upload_images/59561353213122.jpg" width="120" height="120" alt="简明通信原理" title="简明通信原理" style="margin:5px 0;border:0;" />
-          <img src="http://ste.xidian.edu.cn/txyl/files/upload_images/23341353036432.jpg" width="120" height="120" alt="通信原理" title="通信原理" style="margin:5px 0;border:0;" />
-          <img src="http://ste.xidian.edu.cn/txyl/files/upload_images/63991377783162.jpg" width="120" height="120" alt="通信原理第7版" title="通信原理第7版" style="margin:5px 0;border:0;" />
-          <img src="http://ste.xidian.edu.cn/txyl/files/upload_images/31891377782887.jpg" width="120" height="120" alt="通信原理（第7版）学习辅导与考研指导" title="通信原理（第7版）学习辅导与考研指导" style="margin:5px 0;border:0;" />
-          <img src="http://ste.xidian.edu.cn/txyl/files/upload_images/93001352457640.jpg" width="120" height="120" alt="通信原理第6版（精编本）" title="通信原理第6版（精编本）" style="margin:5px 0;border:0;" />
-          <img src="http://ste.xidian.edu.cn/txyl/files/upload_images/37321352457650.jpg" width="120" height="120" alt="通信原理（英文版）" title="通信原理（英文版）" style="margin:5px 0;border:0;" />
-
+          <?php
+            if(!empty($kctp))
+              foreach ($kctp as $key => $value) {
+                echo '<img src="'.$value['path'].'" width="110" height="120" style="margin:5px;border:0;" />';
+              }
+          ?>
         </div>
     </div>
     <div class="rightmod">
