@@ -5,11 +5,23 @@
     <title>通信原理精品课程 - 桂林电子科技大学通信工程学院</title>
 <link href="/public/css/cssreset-min.css" rel="stylesheet" type="text/css">
 <link href="/public/css/style.css" rel="stylesheet" type="text/css">
+<style media="screen">
+.title{
+  float: right;
+  margin: 60px 200px 0px 0px;
+  font-size: 25px;
+  font-weight: 500;
+   font-family:"Times New Roman",Georgia,Serif;
+}
+</style>
 </head>
 <body>
 <!-- 整页容器 -->
 <div class="container">
     <div class="banner">
+      <div class="title">
+        <h3>通信原理精品课程</h3>
+      </div>
         <!-- <div class="language"><b>中文版</b> | <a href="###" onclick="alert('Sorry…\nEnglish version is under construction.');">Engligh</a></div> -->
     </div>
 
